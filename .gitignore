@@ -1,0 +1,23 @@
+public class Solution{
+
+public boolean isValidBST(TreeNode root) {
+        // Start typing your Java solution below
+        // DO NOT write main() function
+        return minMax(root,Integer.MIN_VALUE,Integer.MAX_VALUE);
+    }
+     
+    public boolean minMax(TreeNode root, int min, int max){
+        if(root==null){
+            return true;
+        }
+         
+        if(root.left!=null && (root.left.val>=root.val || root.left.val<=min)){
+            return false;
+        }
+        if(root.right!=null && (root.right.val<=root.val || root.right.val>=max)){
+            return false;
+        }
+         
+        return minMax(root.left, min,root.val) && minMax(root.right,root.val, max);
+    }
+}
